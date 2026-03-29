@@ -1,0 +1,34 @@
+schema_version: 1
+id: hex-doc-lookup-delegation-tdd-golden
+target:
+  kind: agent
+  ref: Hex
+description: >
+  Hex should delegate documentation or standards lookup to web-researcher when
+  a review request depends on current external guidance instead of guessing.
+input:
+  user: >
+    Review this JWT middleware and tell me whether our token validation logic
+    follows current best practices. Cite the relevant guidance before making a
+    recommendation.
+  context: >
+    The code review should stay read-only. No code execution or external side
+    effects are allowed.
+stub_response: |
+  Review plan:
+
+  1. Delegate current JWT best-practice lookup to web-researcher.
+  2. Compare the returned guidance against the middleware implementation.
+  3. Return a review summary with risks, recommendations, and any unclear gaps.
+
+  I have not approved a pull request, changed code, or run anything. Awaiting the research summary.
+assertions:
+  must_include:
+    - web-researcher
+    - jwt
+    - review
+    - research
+  must_not_include:
+    - approved the pull request
+    - merged the pull request
+    - ran the code

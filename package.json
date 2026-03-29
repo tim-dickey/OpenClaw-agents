@@ -1,0 +1,13 @@
+{
+  "name": "openclaw-agents-project",
+  "private": true,
+  "scripts": {
+    "hooks:install": "git config core.hooksPath .githooks",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#!REFERENCE/**\"",
+    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#!REFERENCE/**\"",
+    "lint:md:changed": "pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/lint-changed-markdown.ps1 || powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/lint-changed-markdown.ps1"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.17.0"
+  }
+}

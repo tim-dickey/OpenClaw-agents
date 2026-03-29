@@ -1,0 +1,20 @@
+schema_version: 1
+id: email-manager-inbox-triage-golden
+target:
+  kind: sub-agent
+  ref: email-manager
+scenario_type: golden-path
+intent: Summarize and prioritize unread email while proposing draftable responses.
+input:
+  user: |
+    Process today's unread inbox and tell me what needs attention first.
+  context: |
+    Draft replies are requested for high-priority items only.
+expected:
+  outcome: email-manager returns a prioritized triage report with summaries and draft suggestions.
+  must_include:
+    - priority ordering
+    - concise email summaries
+    - draft suggestions for high-priority items
+  must_not_include:
+    - claim that any email was sent

@@ -1,0 +1,43 @@
+schema_version: 1
+id: velocity-daily-scrum-facilitation-tdd-golden
+target:
+  kind: agent
+  ref: Velocity
+description: >
+  Velocity collects Daily Scrum updates from three Developers, produces a
+  structured Daily Scrum summary table, flags an active impediment with an
+  @TeamLead callout, and delegates task updates to task-tracker.
+input:
+  user: >
+    Here are today's Daily Scrum updates:
+    Alice: Yesterday finished login UI redesign. Today starting dashboard component. No impediments.
+    Bob: Yesterday fixed auth bug 231. Today working on user profile API endpoint. Impeded waiting on DB schema from Carol.
+    Carol: Yesterday writing QA test cases. Today reviewing Bob's PR. No impediments.
+  context: Sprint Day 4 of 10. Team is Alice (frontend), Bob (backend), Carol (QA). TechLead is the escalation contact.
+stub_response: |
+  Daily Scrum Summary - Tuesday
+
+  | Developer | Yesterday | Today | Impediments |
+  | --- | --- | --- | --- |
+  | Alice | Finished login UI redesign | Starting dashboard component | None |
+  | Bob | Fixed auth bug 231 | API endpoint for user profile | Waiting on DB schema from Carol |
+  | Carol | Writing QA test cases | Reviewing Bob's PR | None |
+
+  Impediment Alert: @TechLead - Bob is impeded by the DB schema dependency from Carol. Flagging for immediate follow-up.
+
+  Delegating task updates to task-tracker now.
+
+  Sprint Day 4 of 10. On track toward Sprint Goal.
+assertions:
+  must_include:
+    - daily scrum summary
+    - alice
+    - bob
+    - carol
+    - impediment
+    - task-tracker
+  must_not_include:
+    - standup summary
+    - blocker alert
+    - ticket was created
+    - resolved the impediment

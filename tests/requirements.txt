@@ -1,0 +1,9 @@
+# Core test framework dependencies
+pytest>=8.0
+pyyaml>=6.0
+python-frontmatter>=1.0
+
+# Optional: required only for --live mode (real LLM execution)
+# Uncomment the provider(s) you intend to use:
+# openai>=1.0          # for gpt-* and o1-* models
+# anthropic>=0.30      # for claude-* models

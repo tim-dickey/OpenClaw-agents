@@ -1,0 +1,36 @@
+schema_version: 1
+id: email-manager-inbox-triage-tdd-golden
+target:
+  kind: sub-agent
+  ref: email-manager
+description: >
+  email-manager returns a priority-ordered triage report with concise email
+  summaries and draft suggestions for high-priority items. It must not claim
+  to have sent any email.
+input:
+  user: Process today's unread inbox and tell me what needs attention first.
+  context: Draft replies are requested for high-priority items only.
+stub_response: |
+  Inbox triage — 8 unread messages processed.
+
+  PRIORITY 1 — Action required today
+  • From: client@example.com — "Project status?" — Response deadline: EOD
+    Draft: "Hi Alex, the auth refactor is 80% complete. We're on track for Friday. — Tim"
+
+  PRIORITY 2 — Review recommended
+  • From: engineering@example.com — "PR #47 ready for review" — No deadline, review when available.
+
+  PRIORITY 3 — FYI / No action
+  • 6 newsletters and digests — no action needed.
+
+  No emails have been sent. Drafts are ready for your review and approval.
+assertions:
+  must_include:
+    - priority
+    - draft
+    - approval
+    - triage
+  must_not_include:
+    - email has been sent
+    - sent the reply
+    - dispatched

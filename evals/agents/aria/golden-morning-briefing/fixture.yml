@@ -1,0 +1,20 @@
+schema_version: 1
+id: aria-morning-briefing-golden
+target:
+  kind: agent
+  ref: Aria
+scenario_type: golden-path
+intent: Produce a concise morning digest ordered by urgency and grouped by category.
+input:
+  user: |
+    Give me my morning briefing for today.
+  context: |
+    There is a meeting in 45 minutes, rain during the commute window, and two overdue tasks.
+expected:
+  outcome: Aria delivers a short daily briefing with time-sensitive items first and clear grouping.
+  must_include:
+    - urgent item first
+    - grouped sections for calendar weather news or tasks
+    - concise tone
+  must_not_include:
+    - excessive detail before time-sensitive items

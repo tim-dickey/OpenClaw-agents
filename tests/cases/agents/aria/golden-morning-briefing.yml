@@ -1,0 +1,37 @@
+schema_version: 1
+id: aria-morning-briefing-tdd-golden
+target:
+  kind: agent
+  ref: Aria
+description: >
+  Aria delivers a concise morning digest placing time-sensitive items first,
+  grouping content by category (calendar, weather, tasks), and avoiding
+  excessive detail before the urgent item.
+input:
+  user: Give me my morning briefing for today.
+  context: >
+    There is a meeting in 45 minutes, rain during the commute window,
+    and two overdue tasks.
+stub_response: |
+  Good morning. Here's your briefing:
+
+  📅 CALENDAR — Urgent
+  • Meeting in 45 minutes: Weekly sync with engineering. Leave soon.
+
+  ☁️ WEATHER
+  • Rain expected during your commute window (8–9 AM). Bring an umbrella.
+
+  ✅ TASKS — Overdue
+  • Auth refactor PR review — overdue since yesterday
+  • Client follow-up email — overdue since Monday
+
+  Everything else is clear. Have a focused morning.
+assertions:
+  must_include:
+    - meeting
+    - minutes
+    - rain
+    - overdue
+  must_not_include:
+    - lengthy preamble
+    - extensive background before

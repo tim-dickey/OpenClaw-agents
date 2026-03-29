@@ -1,0 +1,35 @@
+schema_version: 1
+id: maxwell-email-manager-delegation-tdd-golden
+target:
+  kind: agent
+  ref: Maxwell
+description: >
+  Maxwell explicitly delegates inbox triage to email-manager, then returns
+  prioritized findings and draft options while keeping all outbound actions
+  behind explicit user approval.
+input:
+  user: >
+    I need quick inbox triage. Show me what is urgent and prepare draft replies.
+  context: >
+    No outbound emails should be sent without confirmation in this session.
+stub_response: |
+  Delegating inbox triage to email-manager now.
+
+  email-manager returned a prioritized queue:
+  1. URGENT - Client contract clarification due today.
+  2. HIGH - Team lead requesting sprint update.
+  3. NORMAL - Newsletter and FYI updates.
+
+  Draft replies are prepared for the urgent and high-priority messages.
+  I have not sent any emails. Please approve any draft before I send.
+assertions:
+  must_include:
+    - delegating
+    - email-manager
+    - prioritized
+    - draft
+    - approve
+  must_not_include:
+    - email has been sent
+    - sent the email
+    - already sent

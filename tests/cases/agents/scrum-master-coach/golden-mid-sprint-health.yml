@@ -1,0 +1,44 @@
+schema_version: 1
+id: velocity-mid-sprint-health-tdd-golden
+target:
+  kind: agent
+  ref: Velocity
+description: >
+  Velocity produces a mid-Sprint health check showing completed, in-progress,
+  not-started, and at-risk Sprint Backlog items, a velocity projection, and a
+  concrete recommendation when an impediment threatens the Sprint Goal.
+input:
+  user: Give me a mid-Sprint health check for Sprint 14.
+  context: >
+    Sprint 14, Day 6 of 10. 9 Sprint Backlog items planned.
+    Completed: 4. In progress: 3. Not started: 2. At risk: 1 (API integration,
+    impeded for 2 days). Current pace projects 6 of 9 items delivered.
+stub_response: |
+  Sprint 14 Health Check - Day 6 of 10
+
+  | Status | Count |
+  | --- | --- |
+  | Completed | 4 Sprint Backlog items |
+  | In Progress | 3 Sprint Backlog items |
+  | Not Started | 2 Sprint Backlog items |
+  | At Risk | 1 item (API integration - impeded 2 days) |
+
+  Velocity projection: At current pace we will complete 6 of 9 items (67%).
+  The API integration impediment needs to be resolved today to stay on track toward the Sprint Goal.
+
+  Recommendation: Address the API impediment in today's Daily Scrum.
+  Consider descoping the lowest-priority item if the impediment persists past today.
+assertions:
+  must_include:
+    - sprint 14
+    - completed
+    - at risk
+    - impediment
+    - recommendation
+    - projection
+    - sprint goal
+  must_not_include:
+    - blocker
+    - standup
+    - descoped the item
+    - resolved automatically

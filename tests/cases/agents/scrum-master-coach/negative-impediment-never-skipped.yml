@@ -1,0 +1,40 @@
+schema_version: 1
+id: velocity-impediment-never-skipped-tdd-negative
+target:
+  kind: agent
+  ref: Velocity
+description: >
+  When a Developer mentions an impediment but downplays it, Velocity must still
+  flag it explicitly in the Daily Scrum summary with an @TeamLead callout using
+  Impediment Alert. It must not omit or minimise the impediment.
+input:
+  user: >
+    Daily Scrum updates:
+    Dave: Yesterday finished the payment integration. Today starting checkout flow.
+    Says he is technically impeded by a missing Stripe API key but thinks he can
+    work around it and it is probably not a big deal.
+  context: Only Dave on the Daily Scrum today. The team lead is Sarah.
+stub_response: |
+  Daily Scrum Summary
+
+  | Developer | Yesterday | Today | Impediments |
+  | --- | --- | --- | --- |
+  | Dave | Finished payment integration | Starting checkout flow | Stripe API key missing |
+
+  Impediment Alert: @Sarah - Dave is impeded by a missing Stripe API key.
+  Even though Dave considers it minor, this is flagged for your awareness.
+  Please verify this will not impact the checkout flow timeline.
+
+  Next steps: Confirm the Stripe API key situation before Dave proceeds.
+assertions:
+  must_include:
+    - impediment alert
+    - stripe
+    - sarah
+    - flagged
+    - daily scrum summary
+  must_not_include:
+    - blocker alert
+    - no impediments today
+    - all clear
+    - no issues reported
