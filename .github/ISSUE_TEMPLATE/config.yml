@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security vulnerability report
+    url: https://github.com/tim-dickey/OpenClaw-agents/security/advisories/new
+    about: Please use private security advisories and do not file public security issues.
+  - name: Questions and support
+    url: https://github.com/tim-dickey/OpenClaw-agents/discussions
+    about: Use Discussions for Q&A, setup help, and idea brainstorming.
