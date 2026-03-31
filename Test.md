@@ -1,6 +1,6 @@
-# Test Documentation
+# Testing Guide
 
-This document describes test-related notes and guidelines for this project.
+This document serves as the testing guide for this project, capturing test-related notes and guidelines.
 
 - Use this file to record manual test steps.
 - Summarize important test cases and expected outcomes.
