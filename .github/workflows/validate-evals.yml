@@ -1,7 +1,12 @@
-name: validate-evals
+name: Validate Eval Fixtures
 
 on:
   pull_request:
+    paths:
+      - 'evals/**'
+      - '.github/scripts/validate_evals.py'
+      - 'docs/eval-fixture-spec.md'
+      - '.github/workflows/validate-evals.yml'
   push:
     branches: [main]
     paths:
@@ -15,7 +20,7 @@ permissions:
 
 jobs:
   validate:
-    name: validate-evals
+    name: Validate eval fixtures
     runs-on: ubuntu-latest
 
     steps:

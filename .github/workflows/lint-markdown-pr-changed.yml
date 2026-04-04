@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   markdownlint-changed:
-    name: lint-markdown-pr-changed
+    name: Lint changed markdown files
     runs-on: ubuntu-latest
 
     steps:
@@ -40,7 +40,7 @@ jobs:
           files_ignore: |
             REFERENCE/**
 
-      - name: lint-markdown-pr-changed
+      - name: Lint changed markdown files
         if: steps.changed.outputs.any_changed == 'true'
         run: npx markdownlint-cli2 ${{ steps.changed.outputs.all_changed_files }}
 

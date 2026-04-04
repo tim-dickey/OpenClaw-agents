@@ -2,6 +2,11 @@ name: Validate Agent Templates
 
 on:
   pull_request:
+    paths:
+      - 'agents/**'
+      - '.github/scripts/validate_agents.py'
+      - 'docs/agent-spec.md'
+      - '.github/workflows/validate-agents.yml'
   push:
     branches: [main]
     paths:
@@ -15,7 +20,7 @@ permissions:
 
 jobs:
   validate:
-    name: validate-agents
+    name: Validate agent.md files
     runs-on: ubuntu-latest
 
     steps:

@@ -39,8 +39,7 @@ assignees: ''
 
 <!-- What conditions would indicate this feature is complete? -->
 
-- [ ]
-- [ ]
+- [ ] <acceptance criterion>
 
 ## Additional Context
 
